@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-04-12T14:14:42.883Z" agent="5.0 (Windows)" etag="ZfTK8dnKp40Jage6IsQx" version="14.5.10" type="github">
+<mxfile host="app.diagrams.net" modified="2021-04-12T14:27:01.948Z" agent="5.0 (Windows)" etag="KSbTsRKRONmShrU5AaUE" version="14.5.10" type="github">
   <diagram id="aV00lB4m98laV_DwpAlv" name="Page-1">
     <mxGraphModel dx="868" dy="479" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -16,7 +16,7 @@
         <mxCell id="vRKRvqlmKyvSmNE2YDa2-4" value="Привет, user_name. Я могу помочь тебе в кино мире. Напиши названия того, что ты смотрел, это поможет мне лучше узнать тебя, это займет 2 минуты. Можешь пропустить этот этап, написав Далее." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="185" y="90" width="365" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-5" value="Отлично, напиши фильмы, которые ты смотрел, и они тебе понравились.(Ты в любой момент можешь пропустить&amp;nbsp; этот пункт)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-5" value="Отлично, напиши фильмы сериалы, аниме, которые ты смотрел, и они тебе понравились.(Ты в любой момент можешь пропустить&amp;nbsp; этот пункт)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="71" y="230" width="189" height="70" as="geometry" />
         </mxCell>
         <mxCell id="vRKRvqlmKyvSmNE2YDa2-6" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -65,6 +65,15 @@
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="220" y="580" as="sourcePoint" />
             <mxPoint x="270" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-19" value="Может ты смотрел аниме?" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="65" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-20" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="vRKRvqlmKyvSmNE2YDa2-17" target="vRKRvqlmKyvSmNE2YDa2-19">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="700" as="sourcePoint" />
+            <mxPoint x="290" y="650" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
