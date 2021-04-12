@@ -1,76 +1,76 @@
-<mxfile host="app.diagrams.net" modified="2021-04-12T14:27:01.948Z" agent="5.0 (Windows)" etag="KSbTsRKRONmShrU5AaUE" version="14.5.10" type="github">
+<mxfile host="app.diagrams.net" modified="2021-04-12T14:32:15.111Z" agent="5.0 (Windows)" etag="lBT1YoqsuVhjdj8t1Zw6" version="14.5.10" type="github">
   <diagram id="aV00lB4m98laV_DwpAlv" name="Page-1">
     <mxGraphModel dx="868" dy="479" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-1" value="/start" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-1" value="/start" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="310" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-3" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="vRKRvqlmKyvSmNE2YDa2-1" target="vRKRvqlmKyvSmNE2YDa2-4">
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-3" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="vRKRvqlmKyvSmNE2YDa2-1" target="vRKRvqlmKyvSmNE2YDa2-4" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="220" y="210" as="sourcePoint" />
             <mxPoint x="240" y="80" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-4" value="Привет, user_name. Я могу помочь тебе в кино мире. Напиши названия того, что ты смотрел, это поможет мне лучше узнать тебя, это займет 2 минуты. Можешь пропустить этот этап, написав Далее." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-4" value="Привет, user_name. Я могу помочь тебе в кино мире. Напиши названия того, что ты смотрел, это поможет мне лучше узнать тебя, это займет 2 минуты. Можешь пропустить этот этап, написав Далее." style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="185" y="90" width="365" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-5" value="Отлично, напиши фильмы сериалы, аниме, которые ты смотрел, и они тебе понравились.(Ты в любой момент можешь пропустить&amp;nbsp; этот пункт)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="71" y="230" width="189" height="70" as="geometry" />
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-5" value="Отлично, напиши фильмы сериалы, аниме, которые ты смотрел, и они тебе понравились.(Ты в любой момент можешь пропустить&amp;nbsp; этот пункт)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="71" y="230" width="249" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-6" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="560" y="220" width="120" height="60" as="geometry" />
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-6" value="Хорошо, ты в любой момент можешь вернуться к этому пункту, написав &quot;Заполнить&quot;. Чтобы ознакомиться с полным списком моих возможностей нажми /setings" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="540" y="220" width="270" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-7" value="" style="endArrow=classic;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="vRKRvqlmKyvSmNE2YDa2-4" target="vRKRvqlmKyvSmNE2YDa2-5">
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-7" value="" style="endArrow=classic;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="vRKRvqlmKyvSmNE2YDa2-4" target="vRKRvqlmKyvSmNE2YDa2-5" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="220" y="180" as="sourcePoint" />
             <mxPoint x="270" y="130" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-8" value="" style="endArrow=classic;html=1;exitX=0.685;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="vRKRvqlmKyvSmNE2YDa2-4" target="vRKRvqlmKyvSmNE2YDa2-6">
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-8" value="" style="endArrow=classic;html=1;exitX=0.685;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="vRKRvqlmKyvSmNE2YDa2-4" target="vRKRvqlmKyvSmNE2YDa2-6" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="220" y="180" as="sourcePoint" />
             <mxPoint x="270" y="130" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-9" value="Далее" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-9" value="Далее" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="520" y="180" width="40" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-10" value="Перечислю" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-10" value="Перечислю" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="150" y="180" width="40" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-12" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="vRKRvqlmKyvSmNE2YDa2-5" target="vRKRvqlmKyvSmNE2YDa2-13">
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-12" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="vRKRvqlmKyvSmNE2YDa2-5" target="vRKRvqlmKyvSmNE2YDa2-13" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="220" y="310" as="sourcePoint" />
             <mxPoint x="130" y="330" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-13" value="Теперь напиши, какие фильмы тебе не понравились." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-13" value="Теперь напиши, какие фильмы тебе не понравились." style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="65" y="360" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-15" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="vRKRvqlmKyvSmNE2YDa2-13" target="vRKRvqlmKyvSmNE2YDa2-16">
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-15" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="vRKRvqlmKyvSmNE2YDa2-13" target="vRKRvqlmKyvSmNE2YDa2-16" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="220" y="310" as="sourcePoint" />
             <mxPoint x="130" y="410" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-16" value="Отлично, с фильмами закончили. Теперь приступим к сериалам. Какие сериалы, которые ты смотрел, тебе понравились" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-16" value="Отлично, с фильмами закончили. Теперь приступим к сериалам. Какие сериалы, которые ты смотрел, тебе понравились" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="32.5" y="450" width="185" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-17" value="А какие не понравились?" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-17" value="А какие не понравились?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="65" y="590" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-18" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="vRKRvqlmKyvSmNE2YDa2-16" target="vRKRvqlmKyvSmNE2YDa2-17">
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-18" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="vRKRvqlmKyvSmNE2YDa2-16" target="vRKRvqlmKyvSmNE2YDa2-17" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="220" y="580" as="sourcePoint" />
             <mxPoint x="270" y="530" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-19" value="Может ты смотрел аниме?" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-19" value="Может ты смотрел аниме?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="65" y="700" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="vRKRvqlmKyvSmNE2YDa2-20" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="vRKRvqlmKyvSmNE2YDa2-17" target="vRKRvqlmKyvSmNE2YDa2-19">
+        <mxCell id="vRKRvqlmKyvSmNE2YDa2-20" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="vRKRvqlmKyvSmNE2YDa2-17" target="vRKRvqlmKyvSmNE2YDa2-19" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="240" y="700" as="sourcePoint" />
             <mxPoint x="290" y="650" as="targetPoint" />
