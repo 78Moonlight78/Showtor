@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-04-13T15:40:00.096Z" agent="5.0 (Windows)" etag="meCNDOq3ZRXDbJpuJFQQ" version="14.5.10" type="github">
+<mxfile host="app.diagrams.net" modified="2021-04-13T15:50:32.483Z" agent="5.0 (Windows)" etag="rpNTLydCdCkFqBCtHKz5" version="14.5.10" type="github">
   <diagram id="aV00lB4m98laV_DwpAlv" name="Page-1">
-    <mxGraphModel dx="2563" dy="958" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1695" dy="479" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -289,6 +289,18 @@
         </mxCell>
         <mxCell id="niV2gqIyMvJU-rpUqNF2-50" value="Добавить что-то новое" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
           <mxGeometry x="-550" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="niV2gqIyMvJU-rpUqNF2-51" value="&lt;span&gt;Просмотренное &lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#36393d;" vertex="1" parent="1">
+          <mxGeometry x="1780" y="660" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="niV2gqIyMvJU-rpUqNF2-52" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="niV2gqIyMvJU-rpUqNF2-51" target="niV2gqIyMvJU-rpUqNF2-53">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2030" y="700" as="sourcePoint" />
+            <mxPoint x="1840" y="770" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="niV2gqIyMvJU-rpUqNF2-53" value="&lt;div align=&quot;center&quot;&gt;Выводим все по типу:&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Аниме:&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Наруто&lt;br&gt;Сериалы:&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Дневники вампиров&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;фильмы:&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Шрек&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffcc99;strokeColor=#36393d;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1770" y="760" width="150" height="140" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
