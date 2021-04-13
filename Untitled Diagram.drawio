@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-04-13T15:29:35.979Z" agent="5.0 (Windows)" etag="XQlHNrpjffOiN2suzdkH" version="14.5.10" type="github">
+<mxfile host="app.diagrams.net" modified="2021-04-13T15:40:00.096Z" agent="5.0 (Windows)" etag="meCNDOq3ZRXDbJpuJFQQ" version="14.5.10" type="github">
   <diagram id="aV00lB4m98laV_DwpAlv" name="Page-1">
-    <mxGraphModel dx="1695" dy="479" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2563" dy="958" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -247,6 +247,48 @@
         </mxCell>
         <mxCell id="niV2gqIyMvJU-rpUqNF2-36" value="Вывод наиболее подходящего фильма из списка, также идет сравнение с тем, что смотрел пользователь" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="1181.5" y="570" width="239" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="niV2gqIyMvJU-rpUqNF2-37" value="Персональная рекомендация" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-550" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="niV2gqIyMvJU-rpUqNF2-38" value="Просто человечек" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="660" y="360" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="niV2gqIyMvJU-rpUqNF2-40" value="Мне повезет" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="740" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="niV2gqIyMvJU-rpUqNF2-41" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="niV2gqIyMvJU-rpUqNF2-40" target="niV2gqIyMvJU-rpUqNF2-42">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2090" y="110" as="sourcePoint" />
+            <mxPoint x="2090" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="niV2gqIyMvJU-rpUqNF2-42" value="Выводится рандомна, позиция из базы данных, которое не совпадает с тем, что смотрел пользователь " style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="910" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="niV2gqIyMvJU-rpUqNF2-44" value="Добавить что-то новое" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="niV2gqIyMvJU-rpUqNF2-45" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="niV2gqIyMvJU-rpUqNF2-44" target="niV2gqIyMvJU-rpUqNF2-46">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1490" y="770" as="sourcePoint" />
+            <mxPoint x="1490" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="niV2gqIyMvJU-rpUqNF2-46" value="Классно, что ты просмотрел в этот раз?(Фильм, сериал, аниме, мультфильм или мультсериал)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="800" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="niV2gqIyMvJU-rpUqNF2-48" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="niV2gqIyMvJU-rpUqNF2-46" target="niV2gqIyMvJU-rpUqNF2-49">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1490" y="910" as="sourcePoint" />
+            <mxPoint x="1490" y="950" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="niV2gqIyMvJU-rpUqNF2-49" value="Как называется?" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
+          <mxGeometry x="1430" y="940" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="niV2gqIyMvJU-rpUqNF2-50" value="Добавить что-то новое" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
+          <mxGeometry x="-550" y="320" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
