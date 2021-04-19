@@ -1,16 +1,22 @@
 import telebot
-bot = telebot.TeleBot('1700003025:AAERd-WzZGjpK7D7Kgg4PeyRoUhMZ_SoI6w')
+import config
+from data import db_session
+
+
+bot = telebot.TeleBot(config.TOKEN)
 
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    bot.reply_to(message, f'Я бот. Приятно познакомиться, {message.from_user.first_name}')
+    bot.reply_to(message, f'Привет, {message.from_user.first_name}. Я буду твоим наставником в мире кино. Напиши'
+                          f' названия того, что ты смотрел, это поможет мне лучше узнать тебя, это займет немного времени. '
+                          f'Ты можешь пропустить этот этап /skip')
 
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
-    if message.text.lower() == 'привет':
-        bot.send_message(message.from_user.id, 'Привет!')
+    if message.text.lower() == '/skip':
+        bot.send_message(message.from_user.id, f'{message}')
     else:
         bot.send_message(message.from_user.id, 'Не понимаю, что это значит.')
 
