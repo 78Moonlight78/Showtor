@@ -1,32 +1,21 @@
 import datetime
 import sqlalchemy
-from flask_login import UserMixin
-from sqlalchemy import orm
-from werkzeug.security import generate_password_hash, check_password_hash
 
 from .db_session import SqlAlchemyBase
 
 
-class User(SqlAlchemyBase, UserMixin):
+class UserNet(SqlAlchemyBase):
+    """
+    Класс, описывающий сети(месенджеры, социальные сети) которые использует пользователь
+    """
     __tablename__ = 'users_nets'
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
+    user_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("users.id"))  # id пользователя, к которому привязан ключ
+    net_name = sqlalchemy.Column(sqlalchemy.String)  # название сети, для которой используеться ключ
+    net_ident = sqlalchemy.Column(sqlalchemy.String)  # ключ, для данной сети
 
-    favourite_cinema_types = sqlalchemy.Column(sqlalchemy.ARRAY, sqlalchemy.ForeignKey("cinema_types.id"))
-    favourite_genres = sqlalchemy.Column(sqlalchemy.ARRAY, sqlalchemy.ForeignKey("genres.id"))
+    last_use = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)  # время послоеднего обращения к пользователю, по данному ключу
 
-    user_plan = sqlalchemy.Column(sqlalchemy.ARRAY)
-    user_viewed = sqlalchemy.Column(sqlalchemy.ARRAY)
-
-    age = sqlalchemy.Column(sqlalchemy.Integer)
     created_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
     is_visible = sqlalchemy.Column(sqlalchemy.Boolean, default=True)
-
-    hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    surname = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    age = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
-    position = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    speciality = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    address = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    created_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
