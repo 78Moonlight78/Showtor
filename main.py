@@ -1,24 +1,40 @@
-import telebot
-import config
-from data import db_session
+# Импортируем необходимые классы.
+from telegram.ext import Updater, MessageHandler, Filters
+from telegram.ext import CallbackContext, CommandHandler, ConversationHandler
+from config import *
 
 
-bot = telebot.TeleBot(config.TOKEN)
+def start(update, context):
+    update.message.reply_text(f'Привет, {update.message.chat.first_name}. Я могу помочь тебе в кино мире. Напиши '
+                              f'названия того, что ты смотрел, это поможет мне лучше узнать тебя, это займет'
+                              f' немного времени. Можешь пропустить этот этап, написав /skip. Ты готов?')
 
 
-@bot.message_handler(commands=['start', 'help'])
-def send_welcome(message):
-    bot.reply_to(message, f'Привет, {message.from_user.first_name}. Я буду твоим наставником в мире кино. Напиши'
-                          f' названия того, что ты смотрел, это поможет мне лучше узнать тебя, это займет немного времени. '
-                          f'Ты можешь пропустить этот этап /skip')
+def elementary_survey_1(update, context):
+    update.message.reply_text(f'Отлично, перечисли, через точку, фильмы или мультфильмы, которые ты смотрел и они тебе'
+                              f' понравились.(Ты в любой момент можешь пропуститить любой пункт, используя /next)')
 
 
-@bot.message_handler(content_types=['text'])
-def get_text_messages(message):
-    if message.text.lower() == '/skip':
-        bot.send_message(message.from_user.id, f'{message}')
-    else:
-        bot.send_message(message.from_user.id, 'Не понимаю, что это значит.')
+def elementary_survey_1(update, context):
+    update.message.reply_text(f'Теперь напиши, какие фильмы или мультфильмы тебе не понравились.')
 
 
-bot.polling(none_stop=True)
+def elementary_survey_2(update, context):
+    update.message.reply_text(f'Отлично, с фильмами закончили. Теперь приступим к сериалам. Какие сериалы или'
+                              f' мультсериалы, которые ты смотрел и они тебе понравились?')
+
+
+def main():
+    updater = Updater(TOKEN, use_context=True)
+    dp = updater.dispatcher
+
+    dp.add_handler(CommandHandler("start", start))
+    updater.start_polling()
+
+    # Ждём завершения приложения.
+    # (например, получения сигнала SIG_TERM при нажатии клавиш Ctrl+C)
+    updater.idle()
+
+# Запускаем функцию main() в случае запуска скрипта.
+if __name__ == '__main__':
+    main()
