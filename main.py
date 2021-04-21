@@ -1,38 +1,52 @@
 # Импортируем необходимые классы.
-from telegram.ext import Updater, MessageHandler, Filters
-from telegram.ext import CallbackContext, CommandHandler, ConversationHandler
+from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
+from telegram.ext import (
+    Updater,
+    CommandHandler,
+    MessageHandler,
+    Filters,
+    CallbackContext,
+)
 from config import *
+from elemantary_servey import *
 
+
+def cancel(update, contex):
+    update.message.reply_text(
+        'Хорошо, ты в любой момент можешь вернуться к этому пункту, написав "Заполнить". Чтобы ознакомиться с полным '
+        'списком моих возможностей нажми /setings'
+    )
+    return ConversationHandler.END
 
 def start(update, context):
     update.message.reply_text(f'Привет, {update.message.chat.first_name}. Я могу помочь тебе в кино мире. Напиши '
                               f'названия того, что ты смотрел, это поможет мне лучше узнать тебя, это займет'
-                              f' немного времени. Можешь пропустить этот этап, написав /skip. Ты готов?')
-
-
-def elementary_survey_1(update, context):
-    update.message.reply_text(f'Отлично, перечисли, через точку, фильмы или мультфильмы, которые ты смотрел и они тебе'
-                              f' понравились.(Ты в любой момент можешь пропуститить любой пункт, используя /next)')
-
-
-def elementary_survey_1(update, context):
-    update.message.reply_text(f'Теперь напиши, какие фильмы или мультфильмы тебе не понравились.')
-
-
-def elementary_survey_2(update, context):
-    update.message.reply_text(f'Отлично, с фильмами закончили. Теперь приступим к сериалам. Какие сериалы или'
-                              f' мультсериалы, которые ты смотрел и они тебе понравились?')
+                              f' немного времени. Можешь пропустить этот этап, написав /cancle. Ты готов?'
+    )
+    return ELEM_1
 
 
 def main():
     updater = Updater(TOKEN, use_context=True)
     dp = updater.dispatcher
 
-    dp.add_handler(CommandHandler("start", start))
+    start_handler = CommandHandler('start', start)
+
+    conv_handler = ConversationHandler(
+        entry_points=[start_handler],
+        states={ELEM_1: [MessageHandler(Filters.text, elementary_survey_1)],
+                ELEM_2: [MessageHandler(Filters.text, elementary_survey_2)],
+                ELEM_3: [MessageHandler(Filters.text, elementary_survey_3)],
+                ELEM_4: [MessageHandler(Filters.text, elementary_survey_4)],
+                ELEM_5: [MessageHandler(Filters.text, elementary_survey_5)],
+                ELEM_6: [MessageHandler(Filters.text, elementary_survey_6)]
+        },
+    fallbacks=[CommandHandler('cancle', cancel)],
+    )
+    dp.add_handler(conv_handler)
     updater.start_polling()
 
-    # Ждём завершения приложения.
-    # (например, получения сигнала SIG_TERM при нажатии клавиш Ctrl+C)
+
     updater.idle()
 
 # Запускаем функцию main() в случае запуска скрипта.
