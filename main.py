@@ -1,4 +1,3 @@
-# Импортируем необходимые классы.
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.ext import (
     Updater,
@@ -9,21 +8,31 @@ from telegram.ext import (
 )
 from config import *
 from elemantary_servey import *
+from adding_new import *
 
 
-def cancel(update, contex):
-    update.message.reply_text(
-        'Хорошо, ты в любой момент можешь вернуться к этому пункту, написав "Заполнить". Чтобы ознакомиться с полным '
-        'списком моих возможностей нажми /setings'
-    )
-    return ConversationHandler.END
 
 def start(update, context):
     update.message.reply_text(f'Привет, {update.message.chat.first_name}. Я могу помочь тебе в кино мире. Напиши '
                               f'названия того, что ты смотрел, это поможет мне лучше узнать тебя, это займет'
-                              f' немного времени. Можешь пропустить этот этап, написав /cancle. Ты готов?'
+                              f' немного времени. Можешь пропустить этот этап, написав /cancel. Ты готов?'
     )
     return ELEM_1
+
+
+def settings(update, contex):
+    update.message.reply_text(f'Я могу \n'
+                              f'1) Дать персональную рекомендацию(/personal)\n'
+                              f'2) Мне повезет(/luck)\n'
+                              f'3) Просмотренное(/skaned)\n '
+                              f'4)Добавить что-то новое/new')
+
+def luck(update, contex):
+    update.message.reply_text(f'')
+
+
+def skaned(update, contex):
+    update.message.reply_text(f'')
 
 
 def main():
@@ -31,19 +40,37 @@ def main():
     dp = updater.dispatcher
 
     start_handler = CommandHandler('start', start)
-
-    conv_handler = ConversationHandler(
+    settings_handler = CommandHandler('settings', settings)
+    lucky_handle = CommandHandler('luck', luck)
+    scaned_handle = CommandHandler('skaned', skaned)
+    conv_handler_elem = ConversationHandler(
         entry_points=[start_handler],
-        states={ELEM_1: [MessageHandler(Filters.text, elementary_survey_1)],
+        states={ELEM_1: [MessageHandler(Filters.regex('да'), elementary_survey_1),
+                         MessageHandler(Filters.regex('нет'),spong_bob_1),
+                         MessageHandler(Filters.regex('ДА, КАПИТАН'), spong_bob_2),
+                         MessageHandler(Filters.regex('ТАК ТОЧНО, КАПИТАН'), spong_bob_3)],
                 ELEM_2: [MessageHandler(Filters.text, elementary_survey_2)],
                 ELEM_3: [MessageHandler(Filters.text, elementary_survey_3)],
                 ELEM_4: [MessageHandler(Filters.text, elementary_survey_4)],
                 ELEM_5: [MessageHandler(Filters.text, elementary_survey_5)],
                 ELEM_6: [MessageHandler(Filters.text, elementary_survey_6)]
         },
-    fallbacks=[CommandHandler('cancle', cancel)],
+    fallbacks=[CommandHandler('cancel', cancel)],
     )
-    dp.add_handler(conv_handler)
+    conv_handler_new = ConversationHandler(
+        entry_points=[scaned_handle],
+        states={ KIND: [MessageHandler(Filters.regex('^фильм|сериал|аниме|мультфильм|мультсериал$'), add_new_kind)],
+                 NEW_FILM: [MessageHandler(Filters.text, add_new_film)]
+
+        },
+    fallbacks=[CommandHandler('cancel', cancel)],
+    )
+
+    dp.add_handler(conv_handler_elem)
+    dp.add_handler(settings_handler)
+    dp.add_handler(lucky_handle)
+    dp.add_handler(conv_handler_new)
+    dp.add_handler(scaned_handle)
     updater.start_polling()
 
 
