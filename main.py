@@ -11,7 +11,7 @@ from elemantary_servey import *
 from adding_new import *
 
 
-
+#стартавая функция
 def start(update, context):
     update.message.reply_text(f'Привет, {update.message.chat.first_name}. Я могу помочь тебе в кино мире. Напиши '
                               f'названия того, что ты смотрел, это поможет мне лучше узнать тебя, это займет'
@@ -19,19 +19,27 @@ def start(update, context):
     )
     return ELEM_1
 
-
+#Выводит настройки
 def settings(update, contex):
     update.message.reply_text(f'Я могу \n'
                               f'1) Дать персональную рекомендацию(/personal)\n'
                               f'2) Мне повезет(/luck)\n'
-                              f'3) Просмотренное(/skaned)\n '
-                              f'4)Добавить что-то новое/new')
+                              f'3) Просмотренное(/skaned)\n'
+                              f'4) Добавить что-то новое(/new)')
 
+#Выводит рандомную рекомендация пользователь
+#Подсоеденить
 def luck(update, contex):
     update.message.reply_text(f'')
 
 
+#функция, которая выводит просмотренное
 def skaned(update, contex):
+    return KIND
+
+
+#радомная рекомендация мемов
+def meme(update, contex):
     update.message.reply_text(f'')
 
 
@@ -75,6 +83,7 @@ def main():
 
 
     updater.idle()
+
 
 # Запускаем функцию main() в случае запуска скрипта.
 if __name__ == '__main__':

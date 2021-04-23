@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14ab5dde-f2f0-41d3-be15-db2c8f279ece" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/adding_new.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/personal_rec.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elemantary_servey.py" beforeDir="false" afterPath="$PROJECT_DIR$/elemantary_servey.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/personal_rec.py" beforeDir="false" afterPath="$PROJECT_DIR$/personal_rec.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
