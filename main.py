@@ -1,14 +1,12 @@
-from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.ext import (
     Updater,
     CommandHandler,
     MessageHandler,
     Filters,
-    CallbackContext,
 )
-from config import *
-from elemantary_servey import *
-from adding_new import *
+from telegram_bot.config import *
+from telegram_bot.elemantary_servey import *
+from telegram_bot.adding_new import *
 
 
 #стартавая функция
@@ -53,15 +51,15 @@ def main():
     scaned_handle = CommandHandler('skaned', skaned)
     conv_handler_elem = ConversationHandler(
         entry_points=[start_handler],
-        states={ELEM_1: [MessageHandler(Filters.regex('да'), elementary_survey_1),
+        states={ELEM_1: [MessageHandler(Filters.regex('^да|Да|$'), elementary_survey_1),
                          MessageHandler(Filters.regex('нет'),spong_bob_1),
                          MessageHandler(Filters.regex('ДА, КАПИТАН'), spong_bob_2),
                          MessageHandler(Filters.regex('ТАК ТОЧНО, КАПИТАН'), spong_bob_3)],
-                ELEM_2: [MessageHandler(Filters.text, elementary_survey_2)],
-                ELEM_3: [MessageHandler(Filters.text, elementary_survey_3)],
-                ELEM_4: [MessageHandler(Filters.text, elementary_survey_4)],
-                ELEM_5: [MessageHandler(Filters.text, elementary_survey_5)],
-                ELEM_6: [MessageHandler(Filters.text, elementary_survey_6)]
+                ELEM_2: [MessageHandler((Filters.text ^ Filters.regex('/cancel')), elementary_survey_2)],
+                ELEM_3: [MessageHandler((Filters.text ^ Filters.regex('/cancel')), elementary_survey_3)],
+                ELEM_4: [MessageHandler((Filters.text ^ Filters.regex('/cancel')), elementary_survey_4)],
+                ELEM_5: [MessageHandler((Filters.text ^ Filters.regex('/cancel')), elementary_survey_5)],
+                ELEM_6: [MessageHandler((Filters.text ^ Filters.regex('/cancel')), elementary_survey_6)]
         },
     fallbacks=[CommandHandler('cancel', cancel)],
     )
