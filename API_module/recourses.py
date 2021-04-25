@@ -9,6 +9,8 @@ from data.cinema import Cinema
 
 from API_module.recomend_module import random_recommendation, personal_recommendation
 
+from json import loads, dumps
+
 
 SUCCESS_ERROR = "success"
 
@@ -73,7 +75,8 @@ class UserHandler(Resource):
                     rating = Rating(
                         user_id=user.id,
                         cinema_id=cinema.id,
-                        rating=10 if json_data["argument"]["estimation"] == "like" else 1,
+                        rating=10 if json_data["argument"]["estimation"] == "like" else
+                                        1 if json_data["argument"]["estimation"] == "not like" else 0,
                         is_rating=False
                     )
                     session.add(rating)
@@ -83,16 +86,29 @@ class UserHandler(Resource):
                             "error": SUCCESS_ERROR if not bool(error_cinemas) else "not found cinemas",
                             "error cinemas": error_cinemas})
 
-        elif json_data["command"] == "change age":
+        if json_data["command"] == "change age":
             pass
-        elif json_data["command"] == "put film to stec":
-            pass
+
+        if json_data["command"] == "put film to stack":
+            if session.query(Cinema).filter(Cinema.name == json_data["argument"],
+                                            Cinema.is_visible == True).first() is None:
+                return jsonify({"net": json_data["net"],
+                                "net_id": json_data["net_id"],
+                                "error": "not found cinema"})
+
+            user_plan = loads(user.user_plan)
+            user_plan.append(json_data["argument"])
+            user.user_plan = dumps(user_plan)
+            session.commit()
+            return jsonify({"net": json_data["net"],
+                            "net_id": json_data["net_id"],
+                            "error": SUCCESS_ERROR})
 
         session.commit()
         return jsonify({
             "net": json_data["net"],
-            "net_id": json_data["net_id"],
-            "user_state": False})
+            "net_id": json_data["net_id"]})
+        #  ---------------------------------------put--------------------------------------------------
 
     def get(self):
         json_data = request.get_json(force=True)
@@ -110,6 +126,8 @@ class UserHandler(Resource):
                 "film_info": random_recommendation(session),
                 "error": "User net not found",
             })
+
+        user = session.query(User).filter(User.id == user_net.user_id).first()
 
         # случайный фильм
         if json_data["command"] == "random film":
@@ -136,11 +154,24 @@ class UserHandler(Resource):
                     "error": "bad argument",
                 })
 
-        if json_data["command"] == "get last stec fim":
-            pass
+        if json_data["command"] == "get all stack list":
+            return jsonify({
+                "plan": loads(user.user_plan),
+                "net": json_data["net"],
+                "net_id": json_data["net_id"],
+                "error": SUCCESS_ERROR})
 
-        if json_data["command"] == "get all stec list":
-            pass
-
-        if json_data["command"] == "recommend":
-            pass
+        if json_data["command"] == "all watched":
+            watched_cinemas = session.query(Rating).filter(Rating.user_id == User.id, Rating.is_visible == True).all()
+            out_cinemas = list()
+            for cinema in watched_cinemas:
+                this_cinema = session.query(Cinema).filter(Cinema.id == cinema.cinema_id,
+                                                           Cinema.is_visible == True).first()
+                if not(this_cinema is None):
+                    out_cinemas.append(this_cinema.name)
+            return jsonify({
+                    "watched cinemas": out_cinemas,
+                    "net": json_data["net"],
+                    "net_id": json_data["net_id"],
+                    "error": SUCCESS_ERROR,
+                })

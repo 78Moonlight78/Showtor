@@ -63,7 +63,7 @@ def personal_recommendation(session, argument):
             CinemaType.name.in_(["аниме", "сериал", "мультсериал"])).all()]:
         film = session.query(Cinema).filter(Cinema.type == cinema_type.id,
                                             Cinema.is_visible == True,
-                                            Cinema.number_of_episodes <= int(argument["number of episodes"]),
+                                            Cinema.number_of_episodes <= int(argument[" "]),
                                             or_(Cinema.genres.like(f"%{str(cinema_genre.id)},%"),
                                                 Cinema.genres.like(f"%{str(cinema_genre.id)}]%")))
 
