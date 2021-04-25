@@ -21,7 +21,3 @@ class User(SqlAlchemyBase, UserMixin):
 
     created_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
     is_visible = sqlalchemy.Column(sqlalchemy.Boolean, default=True)
-
-    # hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    # surname = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    # name = sqlalchemy.Column(sqlalchemy.String, nullable=True)

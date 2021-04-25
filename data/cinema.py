@@ -14,6 +14,7 @@ class Cinema(SqlAlchemyBase):
     genres = sqlalchemy.Column(sqlalchemy.JSON, sqlalchemy.ForeignKey("genres.id"))  # жанры
     name = sqlalchemy.Column(sqlalchemy.String)  # название
     duration = sqlalchemy.Column(sqlalchemy.Integer)  # в секундах (одна серия)
+    number_of_episodes = sqlalchemy.Column(sqlalchemy.Integer)  # количество серий
     age_category = sqlalchemy.Column(sqlalchemy.Integer)  # возростное ограничение
     cover_art = sqlalchemy.Column(sqlalchemy.LargeBinary)  # обложка
     description = sqlalchemy.Column(sqlalchemy.String)  # описание
