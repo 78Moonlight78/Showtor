@@ -50,7 +50,7 @@ def luck(update, contex):
 
 #функция, которая выводит просмотренное
 def skaned(update, contex):
-    return KIND
+    pass
 
 
 #радомная рекомендация мемов
@@ -81,14 +81,9 @@ def main():
         },
     fallbacks=[CommandHandler('cancel', cancel)],
     )
-    conv_handler_new = ConversationHandler(
-        entry_points=[scaned_handle],
-        states={KIND: [MessageHandler(Filters.regex('^фильм|сериал|аниме|мультфильм|мультсериал$'), add_new_kind)],
-                NEW_FILM: [MessageHandler(Filters.text, add_new_film)]
 
-        },
-    fallbacks=[CommandHandler('cancel', cancel)],
-    )
+
+
     conv_handler_personal = ConversationHandler(
         entry_points=[personal_handler],
         states={PERSONAL_REC_2: [CallbackQueryHandler(personal_recommendation_2_film, pattern='^Фильм|Мультфильм$'),
