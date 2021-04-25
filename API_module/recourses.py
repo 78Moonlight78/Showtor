@@ -7,7 +7,10 @@ from data.user_nets import UserNet
 
 from API_module.recomend_module import random_recommendation
 
+
 SUCCESS_ERROR = "success"
+
+
 class UserHandler(Resource):
     def post(self):
         json_data = request.get_json(force=True)
@@ -16,7 +19,8 @@ class UserHandler(Resource):
         session = db_session.create_session()
 
         if not (session.query(UserNet).filter(UserNet.net_name == json_data["net"],
-                                        UserNet.net_ident == json_data["net_ident"]).first() is None):
+                                        UserNet.net_ident == json_data["net_id"]).first() is None):
+            print("User is generated")
             return jsonify({
                 "net": json_data["net"],
                 "net_id": json_data["net_id"],
@@ -48,7 +52,7 @@ class UserHandler(Resource):
         session = db_session.create_session()
 
         user_net = session.query(UserNet).filter(UserNet.net_name == json_data["net"],
-                                                 UserNet.net_ident == json_data["net_ident"]).first()
+                                                 UserNet.net_ident == json_data["net_id"]).first()
         if user_net is None:
             return jsonify({"error": "User net not found"})
 
@@ -58,6 +62,9 @@ class UserHandler(Resource):
             pass
         elif json_data["command"] == "change age":
             pass
+        elif json_data["command"] == "put film to stec":
+            pass
+
         session.commit()
         return jsonify({"user_state": False})
 
@@ -68,7 +75,7 @@ class UserHandler(Resource):
         session = db_session.create_session()
 
         user_net = session.query(UserNet).filter(UserNet.net_name == json_data["net"],
-                                                 UserNet.net_ident == json_data["net_ident"]).first()
+                                                 UserNet.net_ident == json_data["net_id"]).first()
 
         if user_net is None:
             return jsonify({
@@ -93,3 +100,18 @@ class UserHandler(Resource):
                     "film_info": random_recommendation(session),
                     "error": SUCCESS_ERROR,
                 })
+
+        # if json_data["command"]:
+
+        if json_data["command"] == "get last stec fim":
+            pass
+
+        if json_data["command"] == "get all stec list":
+            pass
+
+        if json_data["command"] == "recommend":
+            pass
+"""
+        if json_data["command"] == "all watched":
+            film = session.
+"""

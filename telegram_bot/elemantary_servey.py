@@ -1,15 +1,21 @@
 from telegram.ext import ConversationHandler
 
 
-ELEM_1, ELEM_2, ELEM_3,ELEM_4, ELEM_5, ELEM_6 = range(6)
+ELEM_1, ELEM_2, ELEM_3,ELEM_4, ELEM_5, ELEM_6= range(6)
 
 def elementary_survey_1(update, context):
-    update.message.reply_text(f'Отлично, перечисли, через точку, фильмы или мультфильмы, которые ты смотрел и они тебе'
-                              f' понравились.(Ты в любой момент можешь пропуститить любой пункт, используя /next)')
-    return  ELEM_2
+    if update.message.text == '/start':
+        update.message.reply_text('Прости, но повернуть время назад мы не можем, но мы можем идти вперед!')
+    else:
+         update.message.reply_text(f'Отлично, перечисли, через точку, фильмы или мультфильмы, которые ты смотрел и они тебе'
+                                   f' понравились.(Ты в любой момент можешь пропуститить любой пункт, используя /next)')
+    return ELEM_2
 
 def spong_bob_1(update, context):
-    update.message.reply_text(f'ВЫ ГОТОВЫ, ДЕТИ?')
+    if update.message.text == '/start':
+        update.message.reply_text('Прости, но повернуть время назад мы не можем, но мы можем идти вперед!')
+    else:
+        update.message.reply_text(f'ВЫ ГОТОВЫ, ДЕТИ?')
     return ELEM_1
 
 def spong_bob_2(update, context):
@@ -53,3 +59,5 @@ def cancel(update, contex):
         'списком моих возможностей нажми /settings'
     )
     return ConversationHandler.END
+
+
