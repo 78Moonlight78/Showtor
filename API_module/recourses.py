@@ -17,13 +17,15 @@ SUCCESS_ERROR = "success"
 
 class UserHandler(Resource):
     def post(self):
+        # добавление нового пользователя
         json_data = request.get_json(force=True)
         print("post", json_data)
 
         session = db_session.create_session()
 
+        # проверка: есть ли пользователь
         if not (session.query(UserNet).filter(UserNet.net_name == json_data["net"],
-                                        UserNet.net_ident == json_data["net_id"]).first() is None):
+                                              UserNet.net_ident == json_data["net_id"]).first() is None):
             print("User is generated")
             return jsonify({
                 "net": json_data["net"],
@@ -34,7 +36,6 @@ class UserHandler(Resource):
         user = User()
         session.add(user)
         user_id = session.query(User).order_by(User.id.desc()).first().id
-        # print(user_id)
 
         net = UserNet(
             user_id=user_id,
@@ -48,6 +49,7 @@ class UserHandler(Resource):
             "net_id": json_data["net_id"],
             "error": SUCCESS_ERROR,
         })
+    # -------------------------------------post-------------------------------------
 
     def put(self):
         json_data = request.get_json(force=True)
@@ -57,6 +59,8 @@ class UserHandler(Resource):
 
         user_net = session.query(UserNet).filter(UserNet.net_name == json_data["net"],
                                                  UserNet.net_ident == json_data["net_id"]).first()
+
+        # проверка: зарегистрирована ли сеть пользователя
         if user_net is None:
             return jsonify({
                 "net": json_data["net"],
@@ -65,6 +69,7 @@ class UserHandler(Resource):
 
         user = session.query(UserNet).filter(User.id == user_net.user_id).first()
 
+        # добавить фильм в просмотренные или понравившиеся, непонравишиеся
         if json_data["command"] == "put film":
             error_cinemas = list()
             for cinema_name in json_data["argument"]["cinemas"]:
@@ -86,9 +91,7 @@ class UserHandler(Resource):
                             "error": SUCCESS_ERROR if not bool(error_cinemas) else "not found cinemas",
                             "error cinemas": error_cinemas})
 
-        if json_data["command"] == "change age":
-            pass
-
+        # добавить фильм в планируемые
         if json_data["command"] == "put film to stack":
             if session.query(Cinema).filter(Cinema.name == json_data["argument"],
                                             Cinema.is_visible == True).first() is None:
@@ -119,6 +122,7 @@ class UserHandler(Resource):
         user_net = session.query(UserNet).filter(UserNet.net_name == json_data["net"],
                                                  UserNet.net_ident == json_data["net_id"]).first()
 
+        # если сеть пользователя не найдена
         if user_net is None:
             return jsonify({
                 "net": json_data["net"],
@@ -127,7 +131,7 @@ class UserHandler(Resource):
                 "error": "User net not found",
             })
 
-        user = session.query(User).filter(User.id == user_net.user_id).first()
+        user = session.query(User).filter(User.id == user_net.user_id).first()  # пользователь, который написал комманду
 
         # случайный фильм
         if json_data["command"] == "random film":
@@ -154,6 +158,7 @@ class UserHandler(Resource):
                     "error": "bad argument",
                 })
 
+        # получить список фильмов, которые пользователь планирует посмотерть
         if json_data["command"] == "get all stack list":
             return jsonify({
                 "plan": loads(user.user_plan),
@@ -161,6 +166,7 @@ class UserHandler(Resource):
                 "net_id": json_data["net_id"],
                 "error": SUCCESS_ERROR})
 
+        # получение всех просмотренных фильмов
         if json_data["command"] == "all watched":
             watched_cinemas = session.query(Rating).filter(Rating.user_id == User.id, Rating.is_visible == True).all()
             out_cinemas = list()
@@ -175,3 +181,5 @@ class UserHandler(Resource):
                     "net_id": json_data["net_id"],
                     "error": SUCCESS_ERROR,
                 })
+        #  ------------------------------------get--------------------------------------------
+
