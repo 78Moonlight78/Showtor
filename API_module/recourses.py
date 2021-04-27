@@ -68,7 +68,7 @@ class UserHandler(Resource):
                 "net_id": json_data["net_id"],
                 "error": "User net not found"})
 
-        user = session.query(UserNet).filter(User.id == user_net.user_id).first()
+        user = session.query(User).filter(User.id == user_net.user_id).first()
 
         # добавить фильм в просмотренные или понравившиеся, непонравишиеся
         if json_data["command"] == "put film":
