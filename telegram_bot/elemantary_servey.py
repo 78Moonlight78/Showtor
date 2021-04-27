@@ -1,4 +1,5 @@
 from telegram.ext import ConversationHandler
+import requests
 
 
 ELEM_1, ELEM_2, ELEM_3,ELEM_4, ELEM_5, ELEM_6= range(6)
@@ -7,8 +8,9 @@ def elementary_survey_1(update, context):
     if update.message.text == '/start':
         update.message.reply_text('Прости, но повернуть время назад мы не можем, но мы можем идти вперед!')
     else:
-         update.message.reply_text(f'Отлично, перечисли, через точку, фильмы или мультфильмы, которые ты смотрел и они тебе'
+         update.message.reply_text(f'Отлично, перечисли, через точку, фильм или мультфильм, который ты смотрел и он тебе'
                                    f' понравились.(Ты в любой момент можешь пропуститить любой пункт, используя /next)')
+
     return ELEM_2
 
 def spong_bob_1(update, context):
@@ -23,11 +25,20 @@ def spong_bob_2(update, context):
     return ELEM_1
 
 def spong_bob_3(update, context):
-    update.message.reply_text(f'Отлично, перечисли, через точку, фильмы или мультфильмы, которые ты смотрел и они тебе'
+    update.message.reply_text(f'Отлично, перечисли, через точку, фильм или мультфильм, которыq ты смотрел и он тебе'
                               f' понравились.(Ты в любой момент можешь пропуститить любой пункт, используя /next)')
     return ELEM_2
 
 def elementary_survey_2(update, context):
+    update.message.text
+    response = requests.put('http://127.0.0.1:5000/api/testing', json={"net_id": update.message.chat.id,
+                                                                       "net": "telegram",
+                                                                       "command": "put film",
+                                                                       "argument": {
+                                                                           "cinemas": ["Toy Story (1995)", "fdf"],
+                                                                           "estimation": "like"
+                                                                       }})
+
     update.message.reply_text(f'Теперь напиши, какие фильмы или мультфильмы тебе не понравились.')
     return ELEM_3
 
@@ -59,5 +70,4 @@ def cancel(update, contex):
         'списком моих возможностей нажми /settings'
     )
     return ConversationHandler.END
-
 

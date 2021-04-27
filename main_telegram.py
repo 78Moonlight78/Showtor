@@ -14,14 +14,21 @@ from telegram_bot.personal_rec import *
 
 #стартавая функция
 def start(update, context):
-    response = requests.post('http://127.0.0.1:5000/api/testing', json={"net_id": update.message.chat.id,
+    global ID
+    ID = update.message.chat.id
+    print(ID, update.message)
+    response = requests.post('http://127.0.0.1:5000/api/testing', json={"net_id": ID,
                                                                         "net": "Telegram"})
     json_response = response.json()
     if json_response['error'] == 'success':
-        update.message.reply_text(f'Привет, {update.message.chat.first_name}. Я могу помочь тебе в кино мире. Напиши '
-                                  f'названия того, что ты смотрел, это поможет мне лучше узнать тебя, это займет'
-                                  f' немного времени. Можешь пропустить этот этап, написав /cancel. Ты готов?')
-        return ELEM_1
+        update.message.reply_text(f'Привет, {update.message.chat.first_name}. Я могу помочь тебе в кино мире. '
+                                  f'Я ознакомся с моими возможностями.')
+        update.message.reply_text(f'Я могу... \n'
+                                  f'1) Дать персональную рекомендацию(/personal)\n'
+                                  f'2) Мне повезет(/luck)\n'
+                                  f'3) Просмотренное(/skaned)\n'
+                                  f'4) Добавить что-то новое(/new)')
+        #return ELEM_1
     else:
         update.message.reply_text('Ты же уже начал, так продолжай!')
         update.message.reply_text(f'Я могу... \n'
@@ -50,7 +57,13 @@ def luck(update, contex):
 
 #функция, которая выводит просмотренное
 def skaned(update, contex):
-    pass
+    response = requests.get('http://127.0.0.1:5000/api/testing', json={"net_id": update.message.chat.id,
+                                                                       "net": NET,
+                                                                       "command": "all watched"
+                                                                       }
+                            )
+    json_response = response.json()
+    print(json_response)
 
 
 #радомная рекомендация мемов
@@ -90,19 +103,32 @@ def main():
                                  CallbackQueryHandler(personal_recommendation_2_tv_show, pattern='^Сериал|Аниме|'
                                                                                                  'Мультсериал$')],
                 PERSONAL_REC_3: [CallbackQueryHandler(personal_recommendation_3_film),
-                                 MessageHandler((Filters.text ^ Filters.regex('/cancel')),
-                                                personal_recommendation_3_tv_show)],
-                PERSONAL_REC_4: [MessageHandler((Filters.text ^ Filters.regex('/cancel')), personal_recommendation_4)],
-                PERSONAL_REC_5: [MessageHandler((Filters.text ^ Filters.regex('/cancel')), personal_recommendation_5)]
+                                                MessageHandler(Filters.text ^ Filters.command,
+                                                               personal_recommendation_3_tv_show)],
+                PERSONAL_REC_4: [CallbackQueryHandler(personal_recommendation_4)],
+                PERSONAL_REC_5: [CallbackQueryHandler(personal_recommendation_5)]
                },
         fallbacks=[CommandHandler('cancel', cancel)]
     )
 
+    conv_handler_new = ConversationHandler(
+        entry_points=[CommandHandler('new', start_new)],
+        states={NEW_FILM: [MessageHandler(Filters.text ^ Filters.command, add_new_kind)],
+                KIND_FILM:[CallbackQueryHandler(add_new_film)],
+                IS_LIKE:[MessageHandler(Filters.text ^ Filters.command, like_it)],
+                RESULT:[ CallbackQueryHandler(result)]
+                },
+        fallbacks=[CommandHandler('cancel', cancel)]
+
+    )
+
     dp.add_handler(conv_handler_personal)
-    dp.add_handler(conv_handler_elem)
+    #dp.add_handler(conv_handler_elem)
     dp.add_handler(settings_handler)
     dp.add_handler(lucky_handle)
+    dp.add_handler(personal_handler)
     dp.add_handler(scaned_handle)
+    dp.add_handler(start_handler)
     dp.add_handler(conv_handler_new)
     updater.start_polling()
 

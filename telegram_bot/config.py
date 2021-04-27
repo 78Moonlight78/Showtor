@@ -1,1 +1,3 @@
 TOKEN = '1732037546:AAGhjB9wJgF374ROHcX2K70-9ncuINsUjCU'
+NET = "Telegram"
+ID = ''
