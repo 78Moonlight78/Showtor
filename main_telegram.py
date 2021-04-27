@@ -60,6 +60,7 @@ def luck(update, contex):
 
 #Начало записи нового просмотренного
 def start_new(update, contex):
+    print(update.message)
     update.message.reply_text('Добавим что-то новенькое?')
     return NEW_FILM
 
@@ -84,9 +85,7 @@ def skaned(update, contex):
 def meme(update, contex):
     ID = update.message.chat.id
     bot = Bot(TOKEN)
-    picter = random.choice(['meme_picture/1.jpg', 'meme_picture/2.jpg', 'meme_picture/3.jpg', 'meme_picture/4.jpg',
-                            'meme_picture/5.jpg', 'meme_picture/6.jpg', 'meme_picture/7.jpg', 'meme_picture/8.jpg',
-                            'meme_picture/9.jpg', 'meme_picture/10.jpg'])
+    picter = random.choice([f'meme_picture/{i}.jpg'for i in range(1, 16)])
     bot.send_photo(chat_id=ID, photo=open(picter, 'rb'))
 
 #если пользователь вводит рандомный текст
@@ -102,7 +101,7 @@ def main():
     updater = Updater(TOKEN, use_context=True)
     dp = updater.dispatcher
 
-    text_handler = MessageHandler(Filters.text ^ Filters.command, text)
+    text_handler = MessageHandler(Filters.text, text)
     start_handler = CommandHandler('start', start)
     settings_handler = CommandHandler('settings', settings)
     lucky_handle = CommandHandler('luck', luck)
@@ -142,9 +141,9 @@ def main():
     conv_handler_new = ConversationHandler(
         entry_points=[new_handler],
         states={NEW_FILM: [MessageHandler(Filters.text ^ Filters.command, add_new_kind)],
-                KIND_FILM:[CallbackQueryHandler(add_new_film)],
-                IS_LIKE:[MessageHandler(Filters.text ^ Filters.command, like_it)],
-                RESULT:[ CallbackQueryHandler(result)]
+                KIND_FILM: [CallbackQueryHandler(add_new_film)],
+                IS_LIKE: [MessageHandler(Filters.text ^ Filters.command, like_it)],
+                RESULT: [CallbackQueryHandler(result)]
                 },
         fallbacks=[CommandHandler('cancel', cancel)]
 
@@ -152,19 +151,18 @@ def main():
 
     dp.add_handler(conv_handler_personal)
     dp.add_handler(conv_handler_elem)
+    dp.add_handler(conv_handler_new)
     dp.add_handler(settings_handler)
     dp.add_handler(lucky_handle)
     dp.add_handler(personal_handler)
     dp.add_handler(scaned_handle)
     dp.add_handler(start_handler)
-    dp.add_handler(conv_handler_new)
-    dp.add_handler(new_handler)
     dp.add_handler(CommandHandler('meme', meme))
     dp.add_handler(text_handler)
+
     updater.start_polling()
-
-
     updater.idle()
+
 
 
 # Запускаем функцию main() в случае запуска скрипта.
