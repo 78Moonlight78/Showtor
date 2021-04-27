@@ -37,6 +37,7 @@ class UserHandler(Resource):
         session.add(user)
         user_id = session.query(User).order_by(User.id.desc()).first().id
 
+        print(user_id)
         net = UserNet(
             user_id=user_id,
             net_name=json_data["net"],
@@ -75,16 +76,22 @@ class UserHandler(Resource):
             for cinema_name in json_data["argument"]["cinemas"]:
                 cinema = session.query(Cinema).filter(Cinema.name == cinema_name, Cinema.is_visible == True).first()
                 if cinema is None:
+                    cinema = Cinema(name=cinema_name)
+                    session.add(cinema)
+                    session.commit()
                     error_cinemas.append(cinema_name)
-                else:
-                    rating = Rating(
+                    cinema = session.query(Cinema).filter(Cinema.name == cinema_name, Cinema.is_visible == True).first()
+                    print(cinema.name)
+
+
+                rating = Rating(
                         user_id=user.id,
                         cinema_id=cinema.id,
                         rating=10 if json_data["argument"]["estimation"] == "like" else
                                         1 if json_data["argument"]["estimation"] == "not like" else 0,
                         is_rating=False
                     )
-                    session.add(rating)
+                session.add(rating)
             session.commit()
             return jsonify({"net": json_data["net"],
                             "net_id": json_data["net_id"],
@@ -132,6 +139,10 @@ class UserHandler(Resource):
             })
 
         user = session.query(User).filter(User.id == user_net.user_id).first()  # пользователь, который написал комманду
+        if user is None:
+            print("ghfhghfhhghrfhhrehr")
+
+        print(user.id)
 
         # случайный фильм
         if json_data["command"] == "random film":
@@ -168,13 +179,14 @@ class UserHandler(Resource):
 
         # получение всех просмотренных фильмов
         if json_data["command"] == "all watched":
-            watched_cinemas = session.query(Rating).filter(Rating.user_id == User.id, Rating.is_visible == True).all()
+            watched_cinemas = session.query(Rating).filter(Rating.user_id == user.id, Rating.is_visible == True).all()
             out_cinemas = list()
             for cinema in watched_cinemas:
                 this_cinema = session.query(Cinema).filter(Cinema.id == cinema.cinema_id,
                                                            Cinema.is_visible == True).first()
                 if not(this_cinema is None):
                     out_cinemas.append(this_cinema.name)
+
             return jsonify({
                     "watched cinemas": out_cinemas,
                     "net": json_data["net"],

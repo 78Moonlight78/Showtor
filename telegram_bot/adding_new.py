@@ -40,7 +40,8 @@ def add_new_kind(update, contex):
     reply_markup = InlineKeyboardMarkup(keyboard)
     ID = update.message.chat.id
 
-    update.message.reply_text('Классно, что ты просмотрел в этот раз?', reply_markup=reply_markup)
+    update.message.reply_text('Классно, что ты просмотрел в этот раз? Но учти, что я могу этого не знать.',
+                              reply_markup=reply_markup)
     return KIND_FILM
 
 def add_new_film(update, contex):
@@ -58,7 +59,7 @@ def like_it(update, contex):
     keyboard = [
         [
             InlineKeyboardButton("Понравилось", callback_data="like"),
-            InlineKeyboardButton("НЕ ПОНРАВИЛОСЬ", callback_data="dislike"),
+            InlineKeyboardButton("НЕ ПОНРАВИЛОСЬ", callback_data="not like"),
         ]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -68,6 +69,8 @@ def like_it(update, contex):
 
 def result(update, contex):
     global LIKE
+    global NAME, KIND
+    print(NAME)
     query = update.callback_query
     query.answer()
     LIKE = query.data

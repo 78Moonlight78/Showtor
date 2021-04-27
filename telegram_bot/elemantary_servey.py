@@ -3,7 +3,7 @@ import requests
 from telegram_bot.config import *
 
 
-ELEM_1, ELEM_2, ELEM_3,ELEM_4, ELEM_5, ELEM_6= range(6)
+ELEM_1, ELEM_2, ELEM_3,ELEM_4, ELEM_5, ELEM_6 = range(6)
 
 def elementary_survey_1(update, context):
     if update.message.text == '/start':
@@ -55,7 +55,7 @@ def elementary_survey_3(update, context):
                                                                        "command": "put film",
                                                                        "argument": {
                                                                            "cinemas": films,
-                                                                           "estimation": "dislike"
+                                                                           "estimation": "not like"
                                                                        }
                                                                        }
                             )
@@ -87,7 +87,7 @@ def elementary_survey_5(update, context):
                                                                        "command": "put film",
                                                                        "argument": {
                                                                            "cinemas": films,
-                                                                           "estimation": "dislike"
+                                                                           "estimation": "not like"
                                                                        }
                                                                        }
                             )
@@ -103,7 +103,7 @@ def elementary_survey_6(update, context):
                                                                        "command": "put film",
                                                                        "argument": {
                                                                            "cinemas": films,
-                                                                           "estimation": "dislike"
+                                                                           "estimation": "not like"
                                                                        }
                                                                        }
                             )

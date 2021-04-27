@@ -59,6 +59,7 @@ def luck(update, contex):
 
 #функция, которая выводит просмотренное
 def skaned(update, contex):
+    print(update.message.chat.id)
     response = requests.get('http://127.0.0.1:5000/api/testing', json={"net_id": update.message.chat.id,
                                                                        "net": NET,
                                                                        "command": "all watched"
@@ -66,6 +67,11 @@ def skaned(update, contex):
                             )
     json_response = response.json()
     print(json_response)
+    film = [json_response["watched cinemas"][i] for i in range(0, len(json_response["watched cinemas"]), 2)]
+    if film:
+        update.message.reply_text(', '.join(film))
+    else:
+        update.message.reply_text('Золотце, ты еще ничего не посмотрел, ну, или не добавил ко мне в базу)')
 
 
 #радомная рекомендация мемов
@@ -73,10 +79,11 @@ def meme(update, contex):
     ID = update.message.chat.id
     bot = Bot(TOKEN)
     picter = random.choice(['meme_picture/1.jpg', 'meme_picture/2.jpg', 'meme_picture/3.jpg', 'meme_picture/4.jpg',
-                            'meme_picture/5.jpg', 'meme_picture/6.jpg', 'meme_picture/7.jpg'])
+                            'meme_picture/5.jpg', 'meme_picture/6.jpg', 'meme_picture/7.jpg', 'meme_picture/8.jpg',
+                            'meme_picture/9.jpg', 'meme_picture/10.jpg'])
     bot.send_photo(chat_id=ID, photo=open(picter, 'rb'))
 
-
+#если пользователь вводит рандомный текст
 def text(update, contex):
     update.message.reply_text(f'Я не понял, что ты сказал, поэтому держи инструкцию.')
     update.message.reply_text(f'Я могу... \n'
