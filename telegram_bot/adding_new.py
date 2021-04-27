@@ -44,6 +44,7 @@ def add_new_kind(update, contex):
     return KIND_FILM
 
 def add_new_film(update, contex):
+    global KIND
     query = update.callback_query
     query.answer()
     KIND = query.data
@@ -52,11 +53,12 @@ def add_new_film(update, contex):
 
 
 def like_it(update, contex):
+    global NAME
     NAME = update.message.text
     keyboard = [
         [
-            InlineKeyboardButton("Понравилось", callback_data="Фильм"),
-            InlineKeyboardButton("НЕ ПОНРАВИЛОСЬ", callback_data="Сериал"),
+            InlineKeyboardButton("Понравилось", callback_data="like"),
+            InlineKeyboardButton("НЕ ПОНРАВИЛОСЬ", callback_data="dislike"),
         ]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -65,6 +67,7 @@ def like_it(update, contex):
 
 
 def result(update, contex):
+    global LIKE
     query = update.callback_query
     query.answer()
     LIKE = query.data

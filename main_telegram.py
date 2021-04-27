@@ -5,12 +5,14 @@ from telegram.ext import (
     Filters,
     CallbackQueryHandler
 )
+from telegram import Bot
 import requests
 from telegram_bot.config import *
 from telegram_bot.elemantary_servey import *
 from telegram_bot.adding_new import *
 from API_module.recourses import *
 from telegram_bot.personal_rec import *
+import random
 
 #стартавая функция
 def start(update, context):
@@ -68,13 +70,26 @@ def skaned(update, contex):
 
 #радомная рекомендация мемов
 def meme(update, contex):
-    update.message.reply_text(f'')
+    ID = update.message.chat.id
+    bot = Bot(TOKEN)
+    picter = random.choice(['meme_picture/1.jpg', 'meme_picture/2.jpg', 'meme_picture/3.jpg', 'meme_picture/4.jpg',
+                            'meme_picture/5.jpg', 'meme_picture/6.jpg', 'meme_picture/7.jpg'])
+    bot.send_photo(chat_id=ID, photo=open(picter, 'rb'))
 
+
+def text(update, contex):
+    update.message.reply_text(f'Я не понял, что ты сказал, поэтому держи инструкцию.')
+    update.message.reply_text(f'Я могу... \n'
+                              f'1) Дать персональную рекомендацию(/personal)\n'
+                              f'2) Мне повезет(/luck)\n'
+                              f'3) Просмотренное(/skaned)\n'
+                              f'4) Добавить что-то новое(/new)')
 
 def main():
     updater = Updater(TOKEN, use_context=True)
     dp = updater.dispatcher
 
+    text_handler = MessageHandler(Filters.text, text)
     start_handler = CommandHandler('start', start)
     settings_handler = CommandHandler('settings', settings)
     lucky_handle = CommandHandler('luck', luck)
@@ -123,13 +138,15 @@ def main():
     )
 
     dp.add_handler(conv_handler_personal)
-    #dp.add_handler(conv_handler_elem)
+    dp.add_handler(conv_handler_elem)
     dp.add_handler(settings_handler)
     dp.add_handler(lucky_handle)
     dp.add_handler(personal_handler)
     dp.add_handler(scaned_handle)
     dp.add_handler(start_handler)
     dp.add_handler(conv_handler_new)
+    dp.add_handler(CommandHandler('meme', meme))
+    dp.add_handler(text_handler)
     updater.start_polling()
 
 
