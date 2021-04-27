@@ -57,6 +57,12 @@ def luck(update, contex):
     update.message.reply_text(f'{json_response["film_info"]["film_name"]}\n'
                               f'{", ".join(json_response["film_info"]["film_genres"])}')
 
+
+#Начало записи нового просмотренного
+def start_new(update, contex):
+    update.message.reply_text('Добавим что-то новенькое?')
+    return NEW_FILM
+
 #функция, которая выводит просмотренное
 def skaned(update, contex):
     print(update.message.chat.id)
@@ -96,12 +102,14 @@ def main():
     updater = Updater(TOKEN, use_context=True)
     dp = updater.dispatcher
 
-    text_handler = MessageHandler(Filters.text, text)
+    text_handler = MessageHandler(Filters.text ^ Filters.command, text)
     start_handler = CommandHandler('start', start)
     settings_handler = CommandHandler('settings', settings)
     lucky_handle = CommandHandler('luck', luck)
     scaned_handle = CommandHandler('skaned', skaned)
     personal_handler = CommandHandler('personal', personal_recommendation_1)
+    new_handler = CommandHandler('new', start_new)
+
     conv_handler_elem = ConversationHandler(
         entry_points=[start_handler],
         states={ELEM_1: [MessageHandler(Filters.regex('^да|Да|$'), elementary_survey_1),
@@ -116,8 +124,6 @@ def main():
         },
     fallbacks=[CommandHandler('cancel', cancel)],
     )
-
-
 
     conv_handler_personal = ConversationHandler(
         entry_points=[personal_handler],
@@ -134,7 +140,7 @@ def main():
     )
 
     conv_handler_new = ConversationHandler(
-        entry_points=[CommandHandler('new', start_new)],
+        entry_points=[new_handler],
         states={NEW_FILM: [MessageHandler(Filters.text ^ Filters.command, add_new_kind)],
                 KIND_FILM:[CallbackQueryHandler(add_new_film)],
                 IS_LIKE:[MessageHandler(Filters.text ^ Filters.command, like_it)],
@@ -152,6 +158,7 @@ def main():
     dp.add_handler(scaned_handle)
     dp.add_handler(start_handler)
     dp.add_handler(conv_handler_new)
+    dp.add_handler(new_handler)
     dp.add_handler(CommandHandler('meme', meme))
     dp.add_handler(text_handler)
     updater.start_polling()

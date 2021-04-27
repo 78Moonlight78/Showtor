@@ -20,10 +20,6 @@ import requests
 NEW_FILM, KIND_FILM, RESULT, IS_LIKE = range(4)
 NAME, KIND, LIKE = '', '', ''
 
-def start_new(update, contex):
-    update.message.reply_text('Добавим что-то новенькое?')
-    return NEW_FILM
-
 
 def add_new_kind(update, contex):
     global ID

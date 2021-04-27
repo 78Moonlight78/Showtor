@@ -82,8 +82,7 @@ def personal_recommendation_3_film(update, contex):
             InlineKeyboardButton("Романтика", callback_data="Romance"),
         ], [
             InlineKeyboardButton("Приключения", callback_data="Adventure"),
-            InlineKeyboardButton("Ужасы", callback_data="Horror"),
-            InlineKeyboardButton("Романтика", callback_data="Romance")
+            InlineKeyboardButton("Ужасы", callback_data="Horror")
         ]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
